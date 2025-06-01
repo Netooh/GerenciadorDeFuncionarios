@@ -5,10 +5,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tb_cadastro")
@@ -28,17 +29,16 @@ public class FuncionarioModel {
 
     private LocalDate dataNascimento;
 
-    private String cargo;
+    private CargoFuncionario cargo;
 
-    private LocalDate dataCadastro;
+    @CreationTimestamp
+    private LocalDateTime dataCadastro;
+
+    @UpdateTimestamp
+    private LocalDateTime dataUpdate;
 
     @ManyToOne
     @JoinColumn(name = "lojas_id")
     private LojaModel lojas;
-
-    @PrePersist
-    public void prePersist() {
-        this.dataCadastro = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
-    }
 
 }

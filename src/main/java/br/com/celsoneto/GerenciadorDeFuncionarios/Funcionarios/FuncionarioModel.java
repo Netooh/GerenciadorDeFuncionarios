@@ -41,9 +41,11 @@ public class FuncionarioModel {
     @Enumerated(EnumType.STRING)
     private CargoFuncionario cargo;
 
+    @Column(columnDefinition = "TIMESTAMP(0)", updatable = false)
     @CreationTimestamp
     private LocalDateTime dataCadastro;
 
+    @Column(columnDefinition = "TIMESTAMP(0)")
     @UpdateTimestamp
     private LocalDateTime dataUpdate;
 

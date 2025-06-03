@@ -19,9 +19,9 @@ public class FuncionarioController {
         return funcionarioService.listarFuncionarios();
     }
 
-    @GetMapping("/listarID")
-    public String listarID(){
-        return "Listar Funcionarios por ID";
+    @GetMapping("/listar/{id}")
+    public FuncionarioModel listarFuncionarioID(@PathVariable Long id){
+        return funcionarioService.listarFuncionarioID(id);
     }
 
     @PostMapping("/cadastrar")

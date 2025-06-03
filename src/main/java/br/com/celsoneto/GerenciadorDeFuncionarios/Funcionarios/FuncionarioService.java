@@ -23,6 +23,9 @@ public class FuncionarioService {
         return funcionarioID.orElse(null);
     }
 
+    public FuncionarioModel cadastrarFuncionario(FuncionarioModel funcionario) {
+        return funcionarioRepository.save(funcionario);
+    }
 
 
 }

@@ -35,6 +35,7 @@ public class FuncionarioModel {
 
     private LocalDate dataNascimento;
 
+    @Column(name = "estadoCivil")
     private String estadoCivil;
 
     @Enumerated(EnumType.STRING)

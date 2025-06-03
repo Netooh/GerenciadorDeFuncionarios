@@ -2,13 +2,21 @@ package br.com.celsoneto.GerenciadorDeFuncionarios.Funcionarios;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/funcionarios")
 public class FuncionarioController {
 
+    private FuncionarioService funcionarioService;
+
+    public FuncionarioController(FuncionarioService funcionarioService) {
+        this.funcionarioService = funcionarioService;
+    }
+
     @GetMapping("/listar")
-    public String listar(){
-        return "Lista de Funcionarios";
+    public List<FuncionarioModel> listarFuncionarios(){
+        return funcionarioService.listarFuncionarios();
     }
 
     @GetMapping("/listarID")

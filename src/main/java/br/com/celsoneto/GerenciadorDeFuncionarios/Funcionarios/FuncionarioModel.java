@@ -24,11 +24,18 @@ public class FuncionarioModel {
 
     private String nome;
 
+    @Column(unique = true, nullable = false, length = 11)
+    private String cpf;
+
     @Column(unique = true)
     private String email;
 
+    @Column(unique = true)
+    private String telefone;
+
     private LocalDate dataNascimento;
 
+    @Enumerated(EnumType.STRING)
     private CargoFuncionario cargo;
 
     @CreationTimestamp

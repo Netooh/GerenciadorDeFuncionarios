@@ -21,6 +21,10 @@ public class LojaModel {
 
     private String nome;
 
+    @Column(unique = true, nullable = false, length = 14)
+    private String cnpj;
+
+    @Column(unique = true)
     private String endereco;
 
     @OneToMany(mappedBy = "lojas")

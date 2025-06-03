@@ -1,6 +1,7 @@
 package br.com.celsoneto.GerenciadorDeFuncionarios.Lojas;
 
 import br.com.celsoneto.GerenciadorDeFuncionarios.Funcionarios.FuncionarioModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class LojaModel {
     private String endereco;
 
     @OneToMany(mappedBy = "lojas")
+    @JsonIgnore
     private List<FuncionarioModel> funcionarios;
 
 }

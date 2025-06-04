@@ -15,12 +15,12 @@ public class FuncionarioController {
     }
 
     @GetMapping("/listar")
-    public List<FuncionarioModel> listarFuncionarios(){
+    public List<FuncionarioDTO> listarFuncionarios(){
         return funcionarioService.listarFuncionarios();
     }
 
     @GetMapping("/listar/{id}")
-    public FuncionarioModel listarFuncionarioID(@PathVariable Long id){
+    public FuncionarioDTO listarFuncionarioID(@PathVariable Long id){
         return funcionarioService.listarFuncionarioID(id);
     }
 
@@ -30,7 +30,7 @@ public class FuncionarioController {
     }
 
     @PutMapping("/alterarID/{id}")
-    public FuncionarioModel alterarFuncionario(@PathVariable Long id,@RequestBody FuncionarioModel funcionarioAT){
+    public FuncionarioDTO alterarFuncionario(@PathVariable Long id,@RequestBody FuncionarioDTO funcionarioAT){
         return funcionarioService.alterarFuncionario(id,funcionarioAT);
     }
 

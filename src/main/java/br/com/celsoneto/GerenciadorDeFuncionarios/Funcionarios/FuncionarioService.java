@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FuncionarioService {
@@ -16,13 +17,16 @@ public class FuncionarioService {
         this.funcionarioMapper = funcionarioMapper;
     }
 
-    public List<FuncionarioModel> listarFuncionarios() {
-        return funcionarioRepository.findAll();
+    public List<FuncionarioDTO> listarFuncionarios() {
+        List<FuncionarioModel> funcionario = funcionarioRepository.findAll();
+        return funcionario.stream()
+                .map(funcionarioMapper::map)
+                .collect(Collectors.toList());
     }
 
-    public FuncionarioModel listarFuncionarioID(Long id) {
+    public FuncionarioDTO listarFuncionarioID(Long id) {
         Optional<FuncionarioModel> funcionarioID = funcionarioRepository.findById(id);
-        return funcionarioID.orElse(null);
+        return funcionarioID.map(funcionarioMapper::map).orElse(null);
     }
 
     public FuncionarioDTO cadastrarFuncionario(FuncionarioDTO funcionarioDTO) {
@@ -35,14 +39,16 @@ public class FuncionarioService {
         funcionarioRepository.deleteById(id);
     }
 
-    public FuncionarioModel alterarFuncionario(Long id,FuncionarioModel funcionarioAT){
-        if (funcionarioRepository.existsById(id)){
-            funcionarioAT.setId(id);
-            return funcionarioRepository.save(funcionarioAT);
+    public FuncionarioDTO alterarFuncionario(Long id,FuncionarioDTO funcionarioAT){
+        Optional<FuncionarioModel> funcionarioExistente = funcionarioRepository.findById(id);
+        if (funcionarioExistente.isPresent()){
+            FuncionarioModel funcionarioAtualizado = funcionarioMapper.map(funcionarioAT);
+            funcionarioAtualizado.setId(id);
+            FuncionarioModel funcionarioSalvo = funcionarioRepository.save(funcionarioAtualizado);
+            return funcionarioMapper.map(funcionarioSalvo);
         }
 
         return null;
     }
-
 
 }

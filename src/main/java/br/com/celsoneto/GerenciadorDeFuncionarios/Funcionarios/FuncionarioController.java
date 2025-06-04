@@ -34,9 +34,9 @@ public class FuncionarioController {
         return "Alterar Funcionario por ID";
     }
 
-    @DeleteMapping("/deletarID")
-    public String deletarFuncionarioID(){
-        return "Funcionario Deletado por ID";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarFuncionarioID(@PathVariable Long id){
+        funcionarioService.deletarFuncionarioID(id);
     }
 
 }

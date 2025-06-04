@@ -25,7 +25,7 @@ public class FuncionarioController {
     }
 
     @PostMapping("/cadastrar")
-    public FuncionarioModel cadastrarFuncionario(@RequestBody FuncionarioModel funcionario) {
+    public FuncionarioDTO cadastrarFuncionario(@RequestBody FuncionarioDTO funcionario) {
         return funcionarioService.cadastrarFuncionario(funcionario);
     }
 

@@ -31,5 +31,14 @@ public class FuncionarioService {
         funcionarioRepository.deleteById(id);
     }
 
+    public FuncionarioModel alterarFuncionario(Long id,FuncionarioModel funcionarioAT){
+        if (funcionarioRepository.existsById(id)){
+            funcionarioAT.setId(id);
+            return funcionarioRepository.save(funcionarioAT);
+        }
+
+        return null;
+    }
+
 
 }

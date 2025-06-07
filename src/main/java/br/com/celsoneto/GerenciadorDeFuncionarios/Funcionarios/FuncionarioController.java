@@ -51,7 +51,7 @@ public class FuncionarioController {
             return ResponseEntity.ok(funcionaroAlterado);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Funcionário "+ funcionaroAlterado.getNome() + " Não Encontrado!")
+                    .body("Funcionário "+ funcionaroAlterado.getNome() + " Não Encontrado!");
         }
 
     }

@@ -1,29 +1,59 @@
 package br.com.celsoneto.GerenciadorDeFuncionarios.Lojas;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/lojas")
 public class LojaController {
 
-    @GetMapping("/listar")
-    public String listar(){
-        return "Lista de lojas";
+    private LojaService lojaService;
+
+    public LojaController(LojaService lojaService) {
+        this.lojaService = lojaService;
     }
 
-    @GetMapping("/listarID")
-    public String listarID(){
-        return "Listar Loja por ID";
+    @GetMapping("/listar")
+    public ResponseEntity<List<LojaDTO>> listarLojas(){
+        List<LojaDTO> lojas = lojaService.listarLojas();
+        return ResponseEntity.ok(lojas);
+    }
+
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<?> listarLojaID(@PathVariable Long id){
+
+        LojaDTO loja = lojaService.listarLojaID(id);
+
+        if (loja != null){
+            return ResponseEntity.ok(loja);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Loja "+ loja.getNome() + " Não Encontrado!");
+        }
     }
 
     @PostMapping("/cadastrar")
-    public String cadastrarLoja(){
-        return "Loja Cadastrada com sucesso!";
+    public ResponseEntity<String> cadastrarLoja(@RequestBody LojaDTO loja) {
+        LojaDTO novaloja = lojaService.cadastrarLoja(loja);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Funcionário "+ novaloja.getNome()+ " Cadastrado com Sucesso! ");
     }
 
-    @PutMapping("/alterarID")
-    public String alterarLoja(){
-        return "Loja Alterada com sucesso!";
+    @PutMapping("/alterarID/{id}")
+    public ResponseEntity<?> alterarLoja(@PathVariable Long id,@RequestBody LojaDTO lojaAT){
+
+        LojaDTO lojaAlterado = lojaService.alterarLoja(id,lojaAT);
+
+        if(lojaAlterado!=null){
+            return ResponseEntity.ok(lojaAlterado);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Funcionário "+ lojaAlterado.getNome() + " Não Encontrado!");
+        }
+
     }
 
     @DeleteMapping("/deletarID")

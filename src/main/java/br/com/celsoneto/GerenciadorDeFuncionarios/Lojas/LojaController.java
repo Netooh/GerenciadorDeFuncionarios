@@ -39,7 +39,7 @@ public class LojaController {
     public ResponseEntity<String> cadastrarLoja(@RequestBody LojaDTO loja) {
         LojaDTO novaloja = lojaService.cadastrarLoja(loja);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Funcionário "+ novaloja.getNome()+ " Cadastrado com Sucesso! ");
+                .body("Loja "+ novaloja.getNome()+ " Cadastrado com Sucesso! ");
     }
 
     @PutMapping("/alterarID/{id}")
@@ -51,7 +51,7 @@ public class LojaController {
             return ResponseEntity.ok(lojaAlterado);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Funcionário "+ lojaAlterado.getNome() + " Não Encontrado!");
+                    .body("Loja "+ lojaAlterado.getNome() + " Não Encontrado!");
         }
 
     }

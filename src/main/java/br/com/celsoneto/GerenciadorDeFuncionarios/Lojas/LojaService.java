@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 @Service
 public class LojaService {
 
-    private LojaRepository lojaRepository;
-    private LojaMapper lojaMapper;
+    private final LojaRepository lojaRepository;
+    private final LojaMapper lojaMapper;
 
     public LojaService(LojaRepository lojaRepository, LojaMapper lojaMapper) {
         this.lojaRepository = lojaRepository;

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gerenciador de Funcionários</title>
+    <link rel="stylesheet" th:href="@{/css/gerenciadorDeFuncionarios.css}" />
+</head>
+<body>
+
+<h1>Gerenciador de Funcionários</h1>
+
+<div class="container">
+
+    <div class="top-buttons">
+        <a href="/funcionarios/novo" class="btn-action">Cadastrar Novo Funcionário</a>
+        <a href="/funcionarios/informacoes-gerais" class="btn-action">Informações Gerais</a>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Cargo</th>
+            <th>Loja</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="funcionario : ${funcionarios}">
+            <td th:text="${funcionario.id}"></td>
+            <td th:text="${funcionario.nome}"></td>
+            <td th:text="${funcionario.email}"></td>
+            <td th:text="${funcionario.telefone}"></td>
+            <td th:text="${funcionario.cargo}"></td>
+            <td>
+                    <span th:if="${funcionario.lojas != null}">
+                        <span th:text="${funcionario.lojas.nome}"></span>,
+                        Endereço: <span th:text="${funcionario.lojas.endereco}"></span>
+                    </span>
+                <span th:if="${funcionario.lojas == null}">
+                        Não associado a nenhuma loja.
+                    </span>
+            </td>
+            <td class="actions">
+                <a th:href="@{/funcionarios/ui/listar/{id}(id=${funcionario.id})}">Ver Detalhes</a>
+                <a th:href="@{/funcionarios/editar/{id}(id=${funcionario.id})}">Alterar</a>
+                <a th:href="@{/funcionarios/ui/deletar/{id}(id=${funcionario.id})}"
+                   onclick="return confirm('Tem certeza que deseja deletar este funcionário?');">Deletar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

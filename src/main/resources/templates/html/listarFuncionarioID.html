@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detalhes do Funcionário</title>
+    <link rel="stylesheet" th:href="@{/css/detalhesFuncionario.css}" />
+</head>
+<body>
+
+<h1>Gerenciador de Funcionários</h1>
+
+<div class="details-container">
+
+    <h2>
+        Ficha do Funcionário: <span th:text="${funcionario.nome}"></span>
+    </h2>
+
+    <div class="detail-item">
+        <span class="detail-label">Nome:</span>
+        <span th:text="${funcionario.nome}"></span>
+    </div>
+
+    <div class="detail-item">
+        <span class="detail-label">CPF:</span>
+        <span th:text="${funcionario.cpf}"></span>
+    </div>
+
+    <div class="detail-item">
+        <span class="detail-label">Email:</span>
+        <span th:text="${funcionario.email}"></span>
+    </div>
+
+    <div class="detail-item">
+        <span class="detail-label">Telefone:</span>
+        <span th:text="${funcionario.telefone}"></span>
+    </div>
+
+    <div class="detail-item">
+        <span class="detail-label">Data de Nascimento:</span>
+        <span th:text="${funcionario.dataNascimento}"></span>
+    </div>
+
+    <div class="detail-item">
+        <span class="detail-label">Estado Civil:</span>
+        <span th:text="${funcionario.estadoCivil}"></span>
+    </div>
+
+    <div class="detail-item">
+        <span class="detail-label">Cargo:</span>
+        <span th:text="${funcionario.cargo}"></span>
+    </div>
+
+    <div class="detail-item">
+        <span class="detail-label">Data de Cadastro:</span>
+        <span th:text="${funcionario.dataCadastro}"></span>
+    </div>
+
+    <div class="detail-item">
+        <span class="detail-label">Última Atualização:</span>
+        <span th:text="${funcionario.dataUpdate}"></span>
+    </div>
+
+    <div class="actions">
+        <a th:href="@{/funcionarios/editar/{id}(id=${funcionario.id})}" class="edit-btn">Editar</a>
+        <a th:href="@{/funcionarios/ui/deletar/{id}(id=${funcionario.id})}"
+           onclick="return confirm('Tem certeza que deseja deletar este funcionário?');"
+           class="delete-btn">Deletar</a>
+    </div>
+
+    <a href="/funcionarios/ui/inicio" class="back-btn">Voltar ao Início</a>
+
+</div>
+
+</body>
+</html>

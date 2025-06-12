@@ -13,8 +13,8 @@
 <div class="container">
 
     <div class="top-buttons">
-        <a href="/funcionarios/novo" class="btn-action">Cadastrar Novo Funcionário</a>
-        <a href="/funcionarios/informacoes-gerais" class="btn-action">Informações Gerais</a>
+        <a href="/funcionarios/ui/cadastrar" class="btn-action">Cadastrar Novo Funcionário</a>
+        <a href="#" class="btn-action">Informações Gerais</a>
     </div>
 
     <table>
@@ -39,7 +39,7 @@
             <td th:text="${funcionario.cargo}"></td>
             <td>
                     <span th:if="${funcionario.lojas != null}">
-                        <span th:text="${funcionario.lojas.nome}"></span>,
+                        Nome: <span th:text="${funcionario.lojas.nome}"></span>,
                         Endereço: <span th:text="${funcionario.lojas.endereco}"></span>
                     </span>
                 <span th:if="${funcionario.lojas == null}">

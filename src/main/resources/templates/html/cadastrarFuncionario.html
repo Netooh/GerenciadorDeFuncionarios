@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adicionar Novo Funcionário</title>
+    <link rel="stylesheet" th:href="@{/css/cadastrarFuncionario.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Adicionar Novo Funcionário</h1>
+
+    <div class="form-container">
+        <div th:if="${mensagem}" class="mensagem" th:text="${mensagem}"></div>
+
+        <form th:action="@{/funcionarios/ui/salvar}" th:object="${funcionario}" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" required />
+
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" th:field="*{cpf}" required />
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" required />
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" th:field="*{telefone}" required />
+
+            <label for="dataNascimento">Data de Nascimento:</label>
+            <input type="date" id="dataNascimento" th:field="*{dataNascimento}" required />
+
+            <label for="estadoCivil">Estado Civil:</label>
+            <input type="text" id="estadoCivil" th:field="*{estadoCivil}" required />
+
+            <label for="cargo">Cargo:</label>
+            <select id="cargo" th:field="*{cargo}" required>
+                <option value="">Selecione...</option>
+                <option th:each="c : ${cargos}" th:value="${c}" th:text="${c}"></option>
+            </select>
+
+            <label for="loja">Loja:</label>
+            <select id="loja" th:field="*{lojas}" required>
+                <option value="">Selecione...</option>
+                <option th:each="l : ${lojas}" th:value="${l.id}" th:text="${l.nome}"></option>
+            </select>
+
+            <button type="submit">Cadastrar Funcionário</button>
+        </form>
+
+        <a th:href="@{/funcionarios/ui/inicio}" class="cancelar">Cancelar</a>
+    </div>
+</div>
+</body>
+</html>
